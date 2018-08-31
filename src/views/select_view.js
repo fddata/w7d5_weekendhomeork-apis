@@ -6,7 +6,7 @@ const SelectView = function (selector) {
 
 SelectView.prototype.bindEvents = function () {
   PubSub.subscribe("Stations:station-data-loaded", (event) => {
-    console.log(event.detail); // works
+    // console.log(event.detail); // works
     this.populateDropDown(event.detail);
   });
 
