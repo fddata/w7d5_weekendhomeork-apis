@@ -11,7 +11,7 @@ SelectView.prototype.bindEvents = function () {
   });
 
     this.selector.addEventListener('change', (event) => {
-      console.log(event.target.value); //works - sends the index
+      // console.log(event.target.value); //works - sends the index
       PubSub.publish("SelectView:station-selected", event.target.value);
     });
   };

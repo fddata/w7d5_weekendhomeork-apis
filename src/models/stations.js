@@ -14,7 +14,7 @@ const StationList = function () {
 // Then we send these objects to select view.
 // Then select view returns the chosen station
 // Then we use the chosen station ID to generate a new request (this time with new data)
-// Then we send that object to the view
+// Then we send this new object to the view
 
 
 StationList.prototype.getStations = function () {
@@ -34,18 +34,40 @@ StationList.prototype.getStations = function () {
 StationList.prototype.bindEvents = function () {
   PubSub.subscribe("SelectView:station-selected", (event) => {
     const selectedIndex = event.detail;
+
     const selectedStation = this.northernStations[selectedIndex];
     const selectedStationURL = selectedStation["@id"];
     const request = new Request(selectedStationURL);
     request.get()
         .then((data) => {
           PubSub.publish('Stations:selected-station-data', data);
-    })
-    .catch((error) => {
-      console.error(error);
+
+          });
+          // .catch((error) => {
+          //   console.error(error);
+          // });
+
+    const selectedStationid = selectedStation.stationReference;
+    const selectedDataURL = `http://environment.data.gov.uk/flood-monitoring/id/stations/${selectedStationid}/readings`;
+    // console.log(selectedDataURL);
+
+    const dataRequest = new Request(selectedDataURL);
+    dataRequest.get()
+        .then((data) => {
+          // console.log(data); // works
+          PubSub.publish('Stations:selected-station-all-data', data);
+
+          });
+
+
     });
 
-  });
+
+
+
+
+
+
 };
 
 
