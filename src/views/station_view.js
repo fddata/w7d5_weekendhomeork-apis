@@ -1,5 +1,5 @@
 const PubSub = require('../helpers/pub_sub');
-
+const ChartWrapper = require('./chart_wrapper.js') ;
 
 const StationView = function(container){
   this.container = container;
@@ -10,6 +10,12 @@ StationView.prototype.bindEvents = function(){
     const station = event.detail;
     // console.log(station);
     this.render(station);
+
+    const mainChart = document.querySelector('#chart-container');
+    const chartWrapper = new ChartWrapper(mainChart);
+    chartWrapper.bindEvents();
+
+
   });
 };
 

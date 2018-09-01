@@ -48,7 +48,7 @@ StationList.prototype.bindEvents = function () {
           // });
 
     const selectedStationid = selectedStation.stationReference;
-    const selectedDataURL = `http://environment.data.gov.uk/flood-monitoring/id/stations/${selectedStationid}/readings`;
+    const selectedDataURL = `http://environment.data.gov.uk/flood-monitoring/id/stations/${selectedStationid}/readings?_sorted`;
     // console.log(selectedDataURL);
 
     const dataRequest = new Request(selectedDataURL);
