@@ -11,7 +11,7 @@ StationView.prototype.bindEvents = function(){
     // console.log(station);
     this.render(station);
 
-    const mainChart = document.querySelector('#chart-container');
+    const mainChart = document.querySelector('#chart-item');
     const chartWrapper = new ChartWrapper(mainChart);
     chartWrapper.bindEvents();
 

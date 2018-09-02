@@ -1,37 +1,64 @@
+h1, h2, p, label {
+  font-family: 'Montserrat', sans-serif;
+}
+
+body{
+  background-color: whitesmoke;
+  /* background-color: lightsteelblue; */
+}
+
 #header-container{
+  border: 1px black solid;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  text-align: center;
 }
 
 #select-container{
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  /* border: 1px black solid; */
+text-align: center;
+
 }
 
-
-#select{
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+#station-container{
+  display:flex;
+  flex-flow: row wrap;
+  border: 1px black solid;
+  justify-content: center;
+  align-content: stretch;
 }
 
-
-
-#station-detail{
-  flex: 1;
-  width:80%;
+#station-item{
+    border: 1px black solid;
+  flex: 1 0 200px;
+  padding: 10px;
 }
 
-#map-container{
-flex: 1;
-  width:80%;
+#map-item{
+  border: 1px black solid;
+  flex: 1 0 250px;
   height:400px;
+  padding: 10px
 }
 
-#graph-container{
-flex: 1;
-  width:80%;
+#chart-item{
+  border: 1px black solid;
+  flex: 1 0 200px;
   height:400px;
+  padding: 10px
+}
+
+
+.styled-select.slate {
+   /* background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat center; */
+   height: auto;
+   width: auto;
+}
+
+.styled-select.slate select {
+   border: 1px solid #ccc;
+   font-size: 14px;
+   height: auto;
+   width: 180px;
 }

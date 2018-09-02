@@ -54,7 +54,7 @@ StationList.prototype.bindEvents = function () {
     const dataRequest = new Request(selectedDataURL);
     dataRequest.get()
         .then((data) => {
-          // console.log(data); // works
+          console.log(data); // works
           PubSub.publish('Stations:selected-station-all-data', data);
 
           });

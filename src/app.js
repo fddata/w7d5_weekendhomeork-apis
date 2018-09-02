@@ -13,11 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const selectView = new SelectView(selector);
   selectView.bindEvents();
 
-  const stationDetail = document.querySelector('#station-detail');
+  const stationDetail = document.querySelector('#station-item');
   const stationView = new StationView(stationDetail);
   stationView.bindEvents();
 
-  const mainMap = document.querySelector('#map-container');
+  const mainMap = document.querySelector('#map-item');
   const mapWrapper = new MapWrapper(mainMap);
   mapWrapper.bindEvents();
 

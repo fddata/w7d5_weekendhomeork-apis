@@ -8,26 +8,32 @@ this.ydata = [];
 };
 
 
-
+const  myYData = [];
+const  myXData = [];
+const myYSeries = [];
 
 ChartWrapper.prototype.bindEvents = function () {
 
   PubSub.subscribe('Stations:selected-station-all-data', (event) => {
 
     const stationData = event.detail;
-    // console.log(stationData);
-    stationData.items.forEach((item) => {
-      this.ydata.push(item.value);
-      this.xdata.push(item.dateTime);
+    // maybe try a MAP here?
+
+
+    stationData.items.forEach((station) => {
+      this.ydata.push(station.value);
+      this.xdata.push(station.dateTime);
+
     });
   });
 
-  var chartData = {
+ const valueArray = this.ydata.map((x) => x*1);
+ console.log(valueArray);
 
-      name: "Rainfall",
-      data: [this.ydata]
+  console.log(this.xdata);
+  console.log(this.ydata);
 
-  }
+
 
     const options = {
 
@@ -63,7 +69,7 @@ ChartWrapper.prototype.bindEvents = function () {
         }
     },
 
-  
+
 
     series: [{
       name: "Rainfall",
