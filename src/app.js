@@ -8,6 +8,10 @@ const ChartWrapper = require('./views/chart_wrapper.js');
 document.addEventListener('DOMContentLoaded', () => {
 
 
+    const stationList = new StationList();
+    stationList.getStations();
+    stationList.bindEvents();
+
 
   const selector = document.querySelector('#station-selector');
   const selectView = new SelectView(selector);
@@ -22,12 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
   mapWrapper.bindEvents();
 
 
-  const stationList = new StationList();
-  stationList.getStations();
-  stationList.bindEvents();
-
-
-
-
+  const mainChart = document.querySelector('#chart-item');
+  const chartWrapper = new ChartWrapper(mainChart);
+  chartWrapper.bindEvents();
 
 });

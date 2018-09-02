@@ -8,10 +8,6 @@ this.ydata = [];
 };
 
 
-const  myYData = [];
-const  myXData = [];
-const myYSeries = [];
-
 ChartWrapper.prototype.bindEvents = function () {
 
   PubSub.subscribe('Stations:selected-station-all-data', (event) => {
@@ -27,75 +23,67 @@ ChartWrapper.prototype.bindEvents = function () {
     });
   });
 
- const valueArray = this.ydata.map((x) => x*1);
- console.log(valueArray);
 
   console.log(this.xdata);
   console.log(this.ydata);
 
 
+  const options = {
 
-    const options = {
+  title: {
+      text: 'RainFall from station'
+  },
 
-    title: {
-        text: 'RainFall from station'
-    },
+  yAxis: {
+      title: {
+          text: 'Rainfall (mm)'
+      },
+      data: this.xdata
+  },
 
-    yAxis: {
-        title: {
-            text: 'Rainfall (mm)'
-        },
-        data: this.xdata
-    },
+  xAxis: {
+      title: {
+          text: 'Date'
+      }
+  },
 
-    xAxis: {
-        title: {
-            text: 'Date'
+  legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
+  },
+
+  plotOptions: {
+      series: {
+        label: {
+          connectorAllowed: true
         }
-    },
+      }
+  },
 
 
-    legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle'
-    },
-
-    plotOptions: {
-        series: {
-          label: {
-            connectorAllowed: true
-          }
-        }
-    },
-
-
-
-    series: [{
-      name: "Rainfall",
+  series: [{
+      name: 'Installation',
       data: this.ydata
     }],
 
-    responsive: {
-        rules: [{
-            condition: {
-                maxWidth: 500
-            },
-            chartOptions: {
-                legend: {
-                    layout: 'horizontal',
-                    align: 'center',
-                    verticalAlign: 'bottom'
-                }
-            }
-        }]
-    }
-
+  responsive: {
+      rules: [{
+          condition: {
+              maxWidth: 500
+          },
+          chartOptions: {
+              legend: {
+                  layout: 'horizontal',
+                  align: 'center',
+                  verticalAlign: 'bottom'
+              }
+          }
+      }]
+  }
 };
 
-
 Highcharts.chart(this.container, options);
-
 };
 
 
