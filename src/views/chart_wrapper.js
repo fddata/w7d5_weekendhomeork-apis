@@ -24,11 +24,18 @@ ChartWrapper.prototype.bindEvents = function () {
   });
 
 
+
+  //attempting to 'zip' my x and y data
+  const mySeries = this.xdata.map(function(e, i) {
+    return [e, this.ydata[i]];
+  });
+
   // TODO: I cant tell if these are arrays or not!!!
   //They have values but I can't use them to construct a chart!!!
-  console.log(this.xdata);
-  console.log(this.ydata);
 
+  console.log(this.xdata); //works
+  console.log(this.ydata); //works
+  console.log(mySeries); //why not work!
 
   const options = {
 
