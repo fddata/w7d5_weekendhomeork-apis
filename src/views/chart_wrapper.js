@@ -24,6 +24,8 @@ ChartWrapper.prototype.bindEvents = function () {
   });
 
 
+  // TODO: I cant tell if these are arrays or not!!!
+  //They have values but I can't use them to construct a chart!!!
   console.log(this.xdata);
   console.log(this.ydata);
 
@@ -38,10 +40,12 @@ ChartWrapper.prototype.bindEvents = function () {
       title: {
           text: 'Rainfall (mm)'
       },
-      data: this.xdata
+
   },
 
   xAxis: {
+      type: 'datetime',
+
       title: {
           text: 'Date'
       }
@@ -63,8 +67,8 @@ ChartWrapper.prototype.bindEvents = function () {
 
 
   series: [{
-      name: 'Installation',
-      data: this.ydata
+      name: 'Rainfall (mm)',
+      data: [this.ydata]
     }],
 
   responsive: {
