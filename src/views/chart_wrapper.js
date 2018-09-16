@@ -5,42 +5,54 @@ const ChartWrapper = function (container) {
 this.container = container;
 this.xdata = [];
 this.ydata = [];
+this.date = "";
 };
 
 
 ChartWrapper.prototype.bindEvents = function () {
 
+  this.getDate();
+
   PubSub.subscribe('Stations:selected-station-all-data', (event) => {
 
     const stationData = event.detail;
-    // maybe try a MAP here?
-
 
     stationData.items.forEach((station) => {
       this.ydata.push(station.value);
       this.xdata.push(station.dateTime);
-
     });
+    this.renderChart();
   });
 
+};
 
 
-  //attempting to 'zip' my x and y data
-  const mySeries = this.xdata.map(function(e, i) {
-    return [e, this.ydata[i]];
+ChartWrapper.prototype.getDate = function () {
+
+  PubSub.subscribe('Stations:selected-station-all-data', (event) => {
+
+    const stationData = event.detail;
+    const today = stationData.items[0].dateTime.slice(0,10);
+    this.date = today;
   });
+};
 
-  // TODO: I cant tell if these are arrays or not!!!
-  //They have values but I can't use them to construct a chart!!!
 
-  console.log(this.xdata); //works
-  console.log(this.ydata); //works
-  console.log(mySeries); //why not work!
+ChartWrapper.prototype.renderChart = function () {
+
 
   const options = {
 
+    chart: {
+    type: 'column'
+  },
+
   title: {
       text: 'RainFall from station'
+  },
+
+  subtitle: {
+  text: `Most recent date: ${this.date}`
   },
 
   yAxis: {
@@ -51,7 +63,9 @@ ChartWrapper.prototype.bindEvents = function () {
   },
 
   xAxis: {
-      type: 'datetime',
+      categories:this.xdata,
+      tickInterval: 16,
+      reversed: true,
 
       title: {
           text: 'Date'
@@ -75,7 +89,7 @@ ChartWrapper.prototype.bindEvents = function () {
 
   series: [{
       name: 'Rainfall (mm)',
-      data: [this.ydata]
+      data: this.ydata
     }],
 
   responsive: {
@@ -91,10 +105,10 @@ ChartWrapper.prototype.bindEvents = function () {
               }
           }
       }]
-  }
-};
+    }
+  };
 
-Highcharts.chart(this.container, options);
+  Highcharts.chart(this.container, options);
 };
 
 
