@@ -18,7 +18,7 @@ const StationList = function () {
 
 
 StationList.prototype.getStations = function () {
-  const request = new Request("http://environment.data.gov.uk/flood-monitoring/id/stations?parameter=rainfall");
+  const request = new Request("https://environment.data.gov.uk/flood-monitoring/id/stations?parameter=rainfall");
   request.get()
       .then((data) => {
         this.stationList = data.items;
@@ -48,7 +48,7 @@ StationList.prototype.bindEvents = function () {
           // });
 
     const selectedStationid = selectedStation.stationReference;
-    const selectedDataURL = `http://environment.data.gov.uk/flood-monitoring/id/stations/${selectedStationid}/readings?_sorted`;
+    const selectedDataURL = `https://environment.data.gov.uk/flood-monitoring/id/stations/${selectedStationid}/readings?_sorted`;
     // console.log(selectedDataURL);
 
     const dataRequest = new Request(selectedDataURL);
